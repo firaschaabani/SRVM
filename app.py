@@ -12,11 +12,14 @@ from werkzeug.security import generate_password_hash,check_password_hash
 
 subprocess.Popen("../dataexterne.py 1 ", shell=True)
 
-
 app = Flask(__name__)
 app.config['SECRET_KEY']='62fe8b83cbe6c254ab6bbb3a0651a90a'
 app.config['MONGO_URI']="mongodb://localhost:27017/rvm"
 mongo=PyMongo(app)
+app.config['ENV'] = 'development'
+app.config['DEBUG'] = True
+app.config['TESTING'] = True
+
 
 from forms import RegistrationForm, LoginForm
 
@@ -30,11 +33,12 @@ def register():
         exists = users.find_one({'name' : form.username.data})
         if exists is None:
             _hashed=generate_password_hash(form.password.data)
-            users.insert({'name':form.username.data,'email':form.email.data,'region':form.region.data,'pwd':_hashed})
+            bd_str=form.bd.data.strftime("%d/%m/%Y ")
+            users.insert({'Name':form.username.data,'Birthdate':bd_str,'Gender':form.gender.data,'Occupation':form.occupation.data,'City':form.region.data,'email':form.email.data,'pwd':_hashed})
             
             return render_template('basic-table.html')
         else :
-            return render_template('basic-table.html')
+            return render_template('error_404.html')
     return render_template('register-2.html',title='Register',form=form)
 
 
@@ -47,7 +51,7 @@ def basic_table():
 @app.route('/charts')
 def chart():
     return render_template('chartjs.html')
-@app.route('/Login')
+@app.route('/login')
 def log_in():
     return render_template('login-2.html')
 
