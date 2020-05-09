@@ -46,23 +46,69 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  {{ form.email.label()}}
-                  <!--label>Email</label-->
+
+                  <!--the section in between is added by me-->
+                  {{ form.gender.label()}}
+                  <div class="input-group">
+
+                    <div class="input-group-prepend bg-transparent">
+                      <span class="input-group-text bg-transparent border-right-0">
+                        <i class="mdi mdi mdi-gender-male-female text-primary"></i>
+                      </span>
+                    </div>
+                    <!--input class="input--style-3 js-datepicker" type="text" placeholder="Birthdate" name="birthday"-->
+                    {{ form.gender(class="form-control form-control-lg",placeholder="Gender") }}
+                    
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  {{ form.bd.label()}}
+                  
+
+                  <div class="input-group">
+
+                    <div class="input-group-prepend bg-transparent">
+                      <span class="input-group-text bg-transparent border-right-0">
+                        <i class="mdi mdi mdi-calendar text-primary"></i>
+                      </span>
+                    </div>
+                    <!--input class="input--style-3 js-datepicker" type="text" placeholder="Birthdate" name="birthday"-->
+                    {{ form.bd(class="input--style-3 js-datepicker",placeholder="Birth date") }}
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <!--label>Username</label-->
+                  {{ form.occupation.label()}}
                   <div class="input-group">
                     <div class="input-group-prepend bg-transparent">
                       <span class="input-group-text bg-transparent border-right-0">
-                        <i class="mdi mdi-email-outline text-primary"></i>
+                        <i class="mdi mdi mdi-briefcase text-primary"></i>
                       </span>
                     </div>
-                    {{form.email(class="form-control form-control-lg border-left-0" , placeholder="exp:Firas.chaabani@espprit.com")}}
-                    <!--input type="email" class="form-control form-control-lg border-left-0" placeholder="Email"-->
+                    {{form.occupation(class="form-control form-control-lg border-left-0" , placeholder="exp:Firas")}}
+                    <!--input type="text" class="form-control form-control-lg border-left-0" placeholder="Username"-->
                   </div>
                 </div>
+
                 <div class="form-group">
 
                   <!--the section in between is added by me-->
                   {{ form.region.label()}}
-                  {{ form.region(class="form-control form-control-lg",id="exampleFormControlSelect2") }}
+                  <div class="input-group">
+
+                    <div class="input-group-prepend bg-transparent">
+                      <span class="input-group-text bg-transparent border-right-0">
+                        <i class="mdi mdi mdi-map-marker text-primary"></i>
+                      </span>
+                    </div>
+                    <!--input class="input--style-3 js-datepicker" type="text" placeholder="Birthdate" name="birthday"-->
+                    {{ form.region(class="form-control form-control-lg",id="exampleFormControlSelect2") }}
+                    
+                  </div>
+                  
+                  
                   <!--the section added by me ends here-->
 
 
@@ -76,6 +122,20 @@
                     <option>Argentina</option>
                   </select-->
                 </div>
+                <div class="form-group">
+                  {{ form.email.label()}}
+                  <!--label>Email</label-->
+                  <div class="input-group">
+                    <div class="input-group-prepend bg-transparent">
+                      <span class="input-group-text bg-transparent border-right-0">
+                        <i class="mdi mdi-email-outline text-primary"></i>
+                      </span>
+                    </div>
+                    {{form.email(class="form-control form-control-lg border-left-0" , placeholder="exp:Firas.chaabani@espprit.com")}}
+                    <!--input type="email" class="form-control form-control-lg border-left-0" placeholder="Email"-->
+                  </div>
+                </div>
+
                 <div class="form-group">
                   <!--label>Password</label-->
                   {{ form.password.label()}}
@@ -95,7 +155,7 @@
                   <!--a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" href="index.html">SIGN UP</a-->
                 </div>
                 <div class="text-center mt-4 font-weight-light">
-                  Already have an account? <a href="/Login" class="text-primary">Login</a>
+                  Already have an account? <a href="/login" class="text-primary">Login</a>
                 </div>
               </form>
             </div>
@@ -122,6 +182,16 @@
   <!-- End plugin js for this page -->
   <!-- Custom js for this page-->
   <!-- End custom js for this page-->
+  <!-- Jquery JS-->
+  <script src="{{ url_for('static', filename='vendors/jquery/jquery.min.js') }}"></script>
+  <!-- vendors JS-->
+  <script src="{{ url_for('static', filename='vendors/select1/select2.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendors/datepicker/moment.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendors/datepicker/daterangepicker.js') }}"></script>
+
+  <!-- Main JS-->
+  <script src="{{ url_for('static', filename='js/global.js') }}"></script>
+
 </body>
 
 </html>ß
