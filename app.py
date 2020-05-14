@@ -54,6 +54,10 @@ def chart():
 @app.route('/login')
 def log_in():
     return render_template('login-2.html')
+@app.route('/gestion')
+def gestion():
+    return render_template('gestion.html')
+
 
 if __name__ == '__main__':
 
