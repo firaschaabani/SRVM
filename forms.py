@@ -12,7 +12,7 @@ from app import mongo
 
 
 class RegistrationForm(FlaskForm):
-    regns=[('Tunis', 'Tunis'), ('Ariana', 'Ariana'),('Sousse','Sousse'),('Kasserine','Kasserine')]
+    regns=[('Tunis', 'Tunis'), ('Ariana', 'Ariana'),('Sousse','Sousse'),('Kasserine','Kasserine'),('Beja','Beja')('Gafsa','Gafsa')]
     genders=[('Male', 'Male'), ('Female', 'Female'),('Other','Other')]
     username = StringField('Username',
                            validators=[DataRequired(), Length(min=2, max=20)])
