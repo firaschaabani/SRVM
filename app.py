@@ -21,7 +21,7 @@ app.config['DEBUG'] = True
 app.config['TESTING'] = True
 
 
-from forms import RegistrationForm, LoginForm
+from forms import RegistrationForm, LoginForm,get_data,get_acc,get_acc_1,get_acc_2
 
 @app.route('/register',methods=['POST','GET'])
 def register():
@@ -30,7 +30,7 @@ def register():
     if request.method == 'POST':
     
         users=mongo.db.rvm
-        exists = users.find_one({'name' : form.username.data})
+        exists = users.find_one({'Name' : form.username.data})
         if exists is None:
             _hashed=generate_password_hash(form.password.data)
             bd_str=form.bd.data.strftime("%d/%m/%Y ")
@@ -39,6 +39,8 @@ def register():
             return render_template('basic-table.html')
         else :
             return render_template('error_404.html')
+            #return(get_data())
+
     return render_template('register-2.html',title='Register',form=form)
 
 
@@ -56,7 +58,7 @@ def log_in():
     return render_template('login-2.html')
 @app.route('/gestion')
 def gestion():
-    return render_template('gestion.html')
+    return render_template('gestion.html',results=get_data(),set=get_acc(),labels=get_acc_1(),values=get_acc_2())
 
 
 if __name__ == '__main__':
