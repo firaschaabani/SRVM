@@ -12,29 +12,64 @@
           <table class="table table-bordered">
             <thead>
               <tr>
+                
                 <th>
-                  #
+                  Name
                 </th>
                 <th>
-                  First name
+                  Birthdate
                 </th>
                 <th>
-                  Product
+                  Gender
                 </th>
                 <th>
-                  Amount
+                  Occupation
                 </th>
                 <th>
-                  Deadline
+                  City
                 </th>
+                <th>
+                  Email
+                </th>
+                
+                <!--th>
+                  Birthdate
+                </th>
+                <th>
+                  Gender
+                </th>
+                <th>
+                  Occupation
+                </th>
+                <th>
+                  City
+                </th>
+                <th>
+                  E_mail
+                </th>
+                <th>
+                  password
+                </th-->
               </tr>
             </thead>
             <tbody>
+              {% for row in results %}
               <tr class="table-info">
-                <td>
-                  1
-                </td>
-                <td>
+                
+                <td>{{row['Name']}}</td>
+                <td>{{row['Birthdate']}}</td>
+                
+                <td>{{row['Gender']}}</td>
+                <td>{{row['Occupation']}}</td>
+                <td>{{row['City']}}</td>
+                <td>{{row['email']}}</td>
+                
+
+              </tr>
+              {% endfor %}
+
+
+                <!--td>
                   Herman Beck
                 </td>
                 <td>
@@ -114,7 +149,8 @@
                 <td>
                   May 03, 2015
                 </td>
-              </tr>
+              </tr-->
+              
             </tbody>
           </table>
         </div>
@@ -122,7 +158,145 @@
     </div>
   </div>
 </div>
+<br>
+<div class="row">
+  <div class="col-lg-6 grid-margin grid-margin-lg-0 stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">User's Occupations Pie Chart</h4>
+        <canvas id="chart" style="height: 300px; width: 100%;"></canvas>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6 grid-margin grid-margin-lg-0 stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Scatter chart</h4>
+        <div>
+          <canvas id="scatterChart"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  
+  var pieData = [
+    
+    {% for la ,it, color in set %}
+      {
+        value: {{ it }},
+        label: "{{la}}",
+        color : "{{color}}"
+      },
+    {% endfor %}
+  
+  ];
+  
+  // get bar chart canvas
+  var mychart = document.getElementById("chart").getContext("2d");
+  steps = 2000
+  max = 30000
+
+  // draw pie chart
+  new Chart(document.getElementById("chart").getContext("2d")).Pie(pieData);
+  /*window.onload = function() {
+  var chart=new CanvasJS.Chart(document.getElementById("chart").getContext("2d"), {
+	animationEnabled: true,
+	title: {
+		text: "Desktop Search Engine Market Share - 2016"
+	},
+	data: [{
+		type: "pie",
+		startAngle: 240,
+		yValueFormatString: "##0.00\"%\"",
+		indexLabel: "{label} {y}",
+		dataPoints: [
+    {% for la,val,color in set %}
+      {y: {{ val }}, label: "{{la}}"}
+    {% endfor %}
+
+			/*{y: 79.45, label: "Google"},
+			{y: 7.31, label: "Bing"},
+			{y: 7.06, label: "Baidu"},
+			{y: 4.91, label: "Yahoo"},
+			{y: 1.26, label: "Others"}
+		]
+	}]
+});
+chart.render();
+
+}*/
 
 
+
+
+/*function() {
+  var doughnutPieData = {
+    datasets: [{
+      
+      data: {{values}}
+      
+    }],
+
+    // These labels appear in the legend and in the tooltips when hovering different arcs
+    //labels: {{set[0]}}
+    
+     //labels: {{labels}}
+     labels: ["Doctor","HR manager","Software developer","Student","Teacher","engineer"]
+     
+    
+  };
+  
+
+  var PieOptions = {
+    responsive: true,
+    animation: {
+      animateScale: true,
+      animateRotate: true
+    }
+  };
+  //new Chart(document.getElementById("chart").getContext("2d")).Pie(pieData)
+  if ($("#chart").length) {
+  var pieChartCanvas = $("#chart").get(0).getContext("2d");
+  var pieChart = new Chart(pieChartCanvas, {
+      type: 'pie',
+      data: doughnutPieData,
+      options: PieOptions
+    });
+  }
+
+};*/
+
+
+
+
+/*var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	title: {
+		text: "Desktop Search Engine Market Share - 2016"
+	},
+	data: [{
+		type: "pie",
+		//startAngle: 240,
+		yValueFormatString: "##0.00\"%\"",
+		indexLabel: "{label} {y}",
+		dataPoints: [
+    {% for la ,it, color in set %}
+      {
+        y: {{ it }},
+        label: "{{la}}"
+        
+      },
+    {% endfor %}
+			
+		]
+	}]
+});
+chart.render();
+
+}*/
+</script>
 
 {% endblock %}
