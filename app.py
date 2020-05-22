@@ -45,7 +45,7 @@ def register():
 
 @app.route('/home-front')
 def index1():
-    return render_template('front/index.html')
+    return render_template('front/index_front.html')
 @app.route('/',methods=['GET','POST'])
 def index():
     return render_template('index.html')
