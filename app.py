@@ -10,7 +10,7 @@ from bson.objectid import ObjectId
 from flask import jsonify,request
 from werkzeug.security import generate_password_hash,check_password_hash
 
-subprocess.Popen("../dataexterne.py 1 ", shell=True)
+#subprocess.Popen("../dataexterne.py 1 ", shell=True)
 
 app = Flask(__name__)
 app.config['SECRET_KEY']='62fe8b83cbe6c254ab6bbb3a0651a90a'
@@ -21,7 +21,7 @@ app.config['DEBUG'] = True
 app.config['TESTING'] = True
 
 
-from forms import RegistrationForm, LoginForm,get_data,get_acc,get_acc_1,get_acc_2
+from forms import *
 
 @app.route('/register',methods=['POST','GET'])
 def register():
@@ -44,7 +44,7 @@ def register():
     return render_template('register-2.html',title='Register',form=form)
 
 @app.route('/home-front')
-def index():
+def index1():
     return render_template('front/index.html')
 @app.route('/',methods=['GET','POST'])
 def index():
