@@ -43,7 +43,9 @@ def register():
 
     return render_template('register-2.html',title='Register',form=form)
 
-
+@app.route('/home-front')
+def index():
+    return render_template('front/index.html')
 @app.route('/',methods=['GET','POST'])
 def index():
     return render_template('index.html')
