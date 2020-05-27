@@ -34,7 +34,7 @@ def register():
         if exists is None:
             _hashed=generate_password_hash(form.password.data)
             bd_str=form.bd.data.strftime("%d/%m/%Y ")
-            users.insert({'Name':form.username.data,'Birthdate':bd_str,'Gender':form.gender.data,'Occupation':form.occupation.data,'City':form.region.data,'email':form.email.data,'pwd':_hashed})
+            users.insert({'Name':form.username.data,'Birthdate':bd_str,'Gender':form.gender.data,'Occupation':form.occupation.data,'City':form.region.data,'email':form.email.data,'pwd':_hashed,'Score':0,'Role':'user'})
             
             return render_template('basic-table.html')
         else :
