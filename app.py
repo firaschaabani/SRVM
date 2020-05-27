@@ -14,7 +14,7 @@ from werkzeug.security import generate_password_hash,check_password_hash
 
 app = Flask(__name__)
 app.config['SECRET_KEY']='62fe8b83cbe6c254ab6bbb3a0651a90a'
-app.config['MONGO_URI']="mongodb://localhost:27017/rvm"
+app.config['MONGO_URI']="mongodb+srv://captainAllen:10051994@cluster0-wplmr.mongodb.net/test?retryWrites=true&w=majority"
 mongo=PyMongo(app)
 app.config['ENV'] = 'development'
 app.config['DEBUG'] = True
@@ -29,7 +29,7 @@ def register():
     form=RegistrationForm()
     if request.method == 'POST':
     
-        users=mongo.db.rvm
+        users=mongo.db.users
         exists = users.find_one({'Name' : form.username.data})
         if exists is None:
             _hashed=generate_password_hash(form.password.data)
