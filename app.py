@@ -46,15 +46,24 @@ def register():
 @app.route('/home-front')
 def index1():
     return render_template('front/index_front.html')
+@app.route('/shop')
+def shop():
+    return render_template('front/shop.html')
 @app.route('/',methods=['GET','POST'])
 def index():
     return render_template('index.html')
+@app.route('/indexback',methods=['GET','POST'])
+def indexback():
+    return render_template('template-back.html')   
 @app.route('/basic_table')
 def basic_table():
     return render_template('basic-table.html')
 @app.route('/charts')
 def chart():
     return render_template('chartjs.html')
+@app.route('/Product')
+def Produit():
+    return render_template('addProduct.html')
 @app.route('/login')
 def log_in():
     return render_template('login-2.html')

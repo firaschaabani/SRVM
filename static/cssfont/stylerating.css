@@ -1,0 +1,40 @@
+
+.rating {
+  display: flex;
+  align-items: center;
+  font-size: 4rem;
+  margin-bottom: 0.5rem;
+}
+
+.rating__stars {
+  display: inline;
+}
+
+.rating__score {
+  padding-right: 0.75rem;
+}
+
+.stars-outer {
+  display: inline-block;
+  position: relative;
+  font-family: FontAwesome;
+}
+
+.stars-outer::before {
+  content: "\f005 \f005 \f005 \f005 \f005";
+  color: #F9DBA6;
+}
+
+.stars-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+}
+
+.stars-inner::before {
+  content: "\f005 \f005 \f005 \f005 \f005";
+  color: #F5A623;
+}

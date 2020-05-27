@@ -43,7 +43,9 @@ class LoginForm(FlaskForm):
 
 
 def get_data():
+
     users=mongo.db.users
+
     doc_str=users.find()
     
     response=[]
@@ -58,7 +60,9 @@ def get_data():
     #print(type(response[0]))
     return response
 def get_acc():
+
     users=mongo.db.users
+
     lis_occ=users.distinct("Occupation")
     lis_red=[]
     for doc in lis_occ:
@@ -71,7 +75,9 @@ def get_acc():
     return zipped
 
 def get_acc_1():
+
     users=mongo.db.users
+
     l=[]
     lis_occ=users.distinct("Occupation")
     l = "".join([str(elem) for elem in lis_occ]) 
@@ -80,7 +86,9 @@ def get_acc_1():
     return l
 
 def get_acc_2():
+
     users=mongo.db.users
+
     lis_occ=users.distinct("Occupation")
     lis_red=[]
     for doc in lis_occ:
