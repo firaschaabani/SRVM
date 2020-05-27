@@ -14,7 +14,7 @@ from werkzeug.security import generate_password_hash,check_password_hash
 
 app = Flask(__name__)
 app.config['SECRET_KEY']='62fe8b83cbe6c254ab6bbb3a0651a90a'
-app.config['MONGO_URI']="mongodb://localhost:27017/rvm"
+app.config['MONGO_URI']="mongodb+srv://captainAllen:10051994@cluster0-wplmr.mongodb.net/test?retryWrites=true&w=majority"
 mongo=PyMongo(app)
 app.config['ENV'] = 'development'
 app.config['DEBUG'] = True
@@ -29,12 +29,12 @@ def register():
     form=RegistrationForm()
     if request.method == 'POST':
     
-        users=mongo.db.user
+        users=mongo.db.users
         exists = users.find_one({'Name' : form.username.data})
         if exists is None:
             _hashed=generate_password_hash(form.password.data)
             bd_str=form.bd.data.strftime("%d/%m/%Y ")
-            users.insert({'Name':form.username.data,'Birthdate':bd_str,'Gender':form.gender.data,'Occupation':form.occupation.data,'City':form.region.data,'email':form.email.data,'pwd':_hashed})
+            users.insert({'Name':form.username.data,'Birthdate':bd_str,'Gender':form.gender.data,'Occupation':form.occupation.data,'City':form.region.data,'email':form.email.data,'pwd':_hashed,'Score':0,'Role':'user'})
             
             return render_template('basic-table.html')
         else :
