@@ -1,0 +1,97 @@
+function afficherEmploye(){
+	xhr=new XMLHttpRequest();
+	url="listeEmploye.php?tarif="+document.getElementById("tarif").value;
+	xhr.open("GET",url, true);
+	xhr.send();
+	xhr.onreadystatechange=function(){
+		if ((xhr.readyState==4) && (xhr.status==200 || xhr.status==0)){
+			document.getElementById("divRes").innerHTML=xhr.responseText;
+		}
+		
+	}
+}
+
+function chargerElt(){
+	if (document.getElementById("typeCompte").value=="ce"){
+	xhr=new XMLHttpRequest();
+	url="elt.html";
+	xhr.open("GET",url, true);
+	xhr.send();
+	xhr.onreadystatechange=function(){
+		if ((xhr.readyState==4) && (xhr.status==200 || xhr.status==0)){
+			document.getElementById("nbPgaes").innerHTML=xhr.responseText;
+		}
+		
+	}
+	}else{
+		document.getElementById("nbPgaes").innerHTML="";
+	}
+}
+
+function chargerEmploye(){
+	xhr=new XMLHttpRequest();
+	url="liste.php";
+	xhr.open("GET",url, true);
+	xhr.send();
+	xhr.onreadystatechange=function(){
+		if ((xhr.readyState==4) && (xhr.status==200 || xhr.status==0)){
+			document.getElementById("listeE").innerHTML=xhr.responseText;
+		}
+		
+	}
+}
+function  ajouterCompte(){
+	xhr=new XMLHttpRequest();
+	url="ajoutCompte.php?type="+document.getElementById("typeCompte").value+"&numcompte="+document.getElementById("numcompte").value+"&solde="+document.getElementById("solde").value+"&taux="+document.getElementById("taux").value+"&cin="+document.getElementById("cin").selectedIndex.value;
+	xhr.open("GET",url, true);
+	xhr.send("");
+	xhr.onreadystatechange=function(){
+		if ((xhr.readyState==4) && (xhr.status==200 || xhr.status==0)){
+			document.getElementById("rep").innerHTML=xhr.responseText;
+		}
+		
+	}
+}
+
+function chargerSuivant(){
+	index=document.getElementById("index").value;
+	document.getElementById("index").value=Number(index)+1;
+	if (index == Number(document.getElementById("size").value) - 1){
+		document.getElementById("suivant").style.display="none";
+	}
+	if (index > 0){
+		document.getElementById("precedent").style.display="block";
+	}
+	xhr=new XMLHttpRequest();
+	url="chargerResult.php?index="+index++;
+	xhr.open("GET",url, true);
+	xhr.send("");
+	xhr.onreadystatechange=function(){
+		if ((xhr.readyState==4) && (xhr.status==200 || xhr.status==0)){
+			document.getElementById("result").innerHTML=xhr.responseText;
+		}
+		
+	}
+	
+}
+function chargerPrecedent(){
+	index=document.getElementById("index").value;
+	document.getElementById("index").value=Number(index)-1;
+	if (index == 0){
+		document.getElementById("precedent").style.display="none";
+	}
+	if (index > 0){
+		document.getElementById("suivant").style.display="block";
+	}
+	xhr=new XMLHttpRequest();
+	url="chargerResult.php?index="+index--;
+	xhr.open("GET",url, true);
+	xhr.send("");
+	xhr.onreadystatechange=function(){
+		if ((xhr.readyState==4) && (xhr.status==200 || xhr.status==0)){
+			document.getElementById("result").innerHTML=xhr.responseText;
+		}
+		
+	}
+	
+}

@@ -18,7 +18,17 @@
     <link rel="shortcut icon" href="{{ url_for('static', filename='images/the_S.png') }}" />
     <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js'></script>
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <link  rel="stylesheet" href="{{ url_for('static', filename='cssfont/bootstrap.min.css') }}"">
+    <link href="{{ url_for('static', filename='cssfont/font-awesome.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='cssfont/datepicker3.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='cssfont/style.css') }}" rel="stylesheet">
+      <link href="{{ url_for('static', filename='cssfont/form.css') }}" rel="stylesheet">
+    <!--Custom Font-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
     
+   
+   
+   
   </head>
   <body>
     <div class="container-scroller">
@@ -209,10 +219,10 @@
               </a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="Product" class="nav-link">
                   <i class="mdi mdi-cube-outline menu-icon"></i>
                   <span class="menu-title">UI Elements</span>
-                  <i class="menu-arrow"></i>
+                 
                 </a>
                 <div class="submenu">
                     <ul>
@@ -222,9 +232,9 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a href="pages/forms/basic_elements.html" class="nav-link">
+                <a href="Product" class="nav-link">
                   <i class="mdi mdi-chart-areaspline menu-icon"></i>
-                  <span class="menu-title">Form Elements</span>
+                  <span class="menu-title">Product</span>
                   <i class="menu-arrow"></i>
                 </a>
             </li>
@@ -266,7 +276,7 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a href="docs/documentation.html" class="nav-link">
+                <a href="gestion" class="nav-link">
                   <i class="mdi mdi-file-document-box-outline menu-icon"></i>
                   <span class="menu-title">Gestion</span></a>
             </li>
@@ -324,5 +334,13 @@
   <script src="{{ url_for('static', filename='/js/Chart.js') }}"></script>
   
   <!-- End custom js for this page-->
+
+  <script src="{{ url_for('static', filename='js-form/js/bootstrap.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js-form/js/chart.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js-form/js/chart-data.js') }}"></script>
+  <script src="{{ url_for('static', filename='js-form/js/easypiechart.js') }}"></script>
+  <script src="{{ url_for('static', filename='js-form/js/easypiechart-data.js') }}"></script>
+  <script src="{{ url_for('static', filename='js-form/js/bootstrap-datepicker.js') }}"></script>
+  <script src="{{ url_for('static', filename='js-form/js/custom.js') }}"></script>
   </body>
 </html>
