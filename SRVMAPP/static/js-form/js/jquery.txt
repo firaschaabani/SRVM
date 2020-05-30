@@ -1,0 +1,7 @@
+$(document).ready(function(){
+	$("#rechercher").click(function(){
+		tarif=$("#tarif").val();
+		$.ajax({url: "listeEmploye.php", data:"tarif="+tarif, success: function(result){
+        $("#divRes").html(result);}})
+	})
+})
