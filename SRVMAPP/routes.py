@@ -16,7 +16,8 @@ def register():
         if exists is None:
             _hashed=generate_password_hash(form.password.data)
             bd_str=form.bd.data.strftime("%d/%m/%Y ")
-            users.insert({'Name':form.username.data,'Birthdate':bd_str,'Gender':form.gender.data,'Occupation':form.occupation.data,'City':form.region.data,'email':form.email.data,'pwd':_hashed,'Score':0,'Role':'user'})
+            occ_low=form.occupation.data.lower()
+            users.insert({'Name':form.username.data,'Birthdate':bd_str,'Gender':form.gender.data,'Occupation':occ_low,'City':form.region.data,'email':form.email.data,'pwd':_hashed,'Score':0,'Role':'user'})
             
             return render_template('basic-table.html')
         else :
@@ -38,14 +39,14 @@ def log_in():
             else :
                 return redirect(url_for('gestion')) 
         else :
-            return render_template('error_404.html')
+            render_template('error_404.html')
     #else:
     #    return render_template('error_404.html')
 
 
     return render_template('login-2.html',form=form)
 
-@app.route('/home-front')
+@app.route('/home')
 def home_front():
     return render_template('front/index_front.html')
 @app.route('/shop')
@@ -68,9 +69,29 @@ def Produit():
     return render_template('addProduct.html')
 
 
-@app.route('/gestion')
+@app.route('/gestion', methods=['GET', 'POST'])
 def gestion():
-    return render_template('gestion.html',results=get_data(),set=get_acc(),labels=get_acc_1(),values=get_acc_2())
+    result=get_data()
+    form=SearchForm()
+    #form1=UpdateRole()
+    users=mongo.db.users
+    if request.method == 'POST': #User controle for the administrator in the user control Section
+        if form.Name.data=='': # display all users
+            result=get_data()
+        elif form.Name.data != '' and form.submit.data:# find one user and display it
+            user=users.find_one({'Name':form.Name.data})
+            result=[user]
+            
+        elif form.Name.data !='' and form.submit1.data: # switch the role of a user (Admin-->user or user--> Admin) and display
+            user=users.find_one({'Name':form.Name.data})
+            if user["Role"]=="user":
+                users.update_one({"Name":form.Name.data},{"$set":{"Role":"Admin"}})
+            elif user["Role"]=="Admin":
+                users.update_one({"Name":form.Name.data},{"$set":{"Role":"user"}})
+            user=users.find_one({'Name':form.Name.data})
+            result=[user]     
+        
+    return render_template('gestion.html',results=result,set=get_acc(),labels=get_acc_1(),values=get_acc_2(),form=form)
 
 #@app.route('/model',methods=['POST'])
 #def model():

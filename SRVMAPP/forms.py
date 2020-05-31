@@ -101,3 +101,9 @@ def get_acc_2():
 
 
 
+class SearchForm(FlaskForm):
+    Name = StringField('name')
+    submit = SubmitField('Find user')
+    submit1 = SubmitField('Switch Role')
+
+
