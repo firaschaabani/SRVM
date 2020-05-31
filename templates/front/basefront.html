@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Vegefoods - Free Bootstrap 4 Template by Colorlib</title>
+    <title>RVM - Reverse Vending Machine </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -27,6 +27,8 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='front/css/flaticon.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='front/css/icomoon.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='front/css/style.css' ) }}">
+    
+	{% block head %}{% endblock %}
   </head>
   <body class="goto-here">
 		<div class="py-1 bg-primary">
@@ -36,14 +38,14 @@
 		    		<div class="row d-flex">
 		    			<div class="col-md pr-4 d-flex topper align-items-center">
 					    	<div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-phone2"></span></div>
-						    <span class="text">+ 1235 2355 98</span>
+						    <span class="text">+ 94743646</span>
 					    </div>
 					    <div class="col-md pr-4 d-flex topper align-items-center">
 					    	<div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-paper-plane"></span></div>
-						    <span class="text">youremail@email.com</span>
+						    <span class="text">zaineb.smaoui@esprit.tn</span>
 					    </div>
 					    <div class="col-md-5 pr-4 d-flex topper align-items-center text-lg-right">
-						    <span class="text">3-5 Business days delivery &amp; Free Returns</span>
+						    <span class="text">7/7  open &amp; 24/24 </span>
 					    </div>
 				    </div>
 			    </div>
@@ -52,7 +54,7 @@
     </div>
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
-	      <a class="navbar-brand" href="index.html">Vegefoods</a>
+	      <a class="navbar-brand" href="index.html">RVM {{g.user.Name}}'s Profile <a>
 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 	        <span class="oi oi-menu"></span> Menu
 	      </button>
@@ -83,29 +85,29 @@
 
     <section id="home-section" class="hero">
 		  <div class="home-slider owl-carousel">
-	      <div class="slider-item" style="background-image: url(images/bg_1.jpg);">
+	      <div class="slider-item" style="background-image: url(../../static/images/index/2.png);">
 	      	<div class="overlay"></div>
 	        <div class="container">
 	          <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
 
 	            <div class="col-md-12 ftco-animate text-center">
-	              <h1 class="mb-2">We serve Fresh Vegestables &amp; Fruits</h1>
-	              <h2 class="subheading mb-4">We deliver organic vegetables &amp; fruits</h2>
-	              <p><a href="#" class="btn btn-primary">View Details</a></p>
+	              <h1 class="mb-2">VM. High Tech Solutions for Environment</h1>
+	              <h2 class="subheading mb-4">Enjoy our special Machine every use &amp; fruits</h2>
+	              <p><a href="#" class="btn btn-primary">Discover RVM</a></p>
 	            </div>
 
 	          </div>
 	        </div>
 	      </div>
 
-	      <div class="slider-item" style="background-image: url(images/bg_2.jpg);">
+	      <div class="slider-item" style="background-image: url(../../static/images/index/4.jpg);">
 	      	<div class="overlay"></div>
 	        <div class="container">
 	          <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
 
 	            <div class="col-sm-12 ftco-animate text-center">
-	              <h1 class="mb-2">100% Fresh &amp; Organic Foods</h1>
-	              <h2 class="subheading mb-4">We deliver organic vegetables &amp; fruits</h2>
+	              <h1 class="mb-2">100% ecofriendly &amp; easy to use</h1>
+	              <h2 class="subheading mb-4"> Game Changer products for Waste Management & Recycling</h2>
 	              <p><a href="#" class="btn btn-primary">View Details</a></p>
 	            </div>
 
@@ -128,7 +130,7 @@
         <div class="row mb-5">
           <div class="col-md">
             <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">Vegefoods</h2>
+              <h2 class="ftco-heading-2">RVM</h2>
               <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.</p>
               <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
                 <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>

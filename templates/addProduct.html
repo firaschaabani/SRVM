@@ -16,11 +16,6 @@
         </ol>
     </div><!--/.row-->
     
-<!---------------------------/.ajouter une voiture-------------------------------------->
-
-<!---------------------------/.ajouter une voiture-------------------------------------->
-
-<!---------------------------/.ajouter une voiture-------------------------------------->
     
     <div class="row">
         <div class="col-lg-12">
@@ -30,7 +25,7 @@
     <div class="columns is-centered form-dom">
 <div class="column is-one-third form js-form form-has-loaded" data-required-field-text="Field cannot be empty">
 
-     <h1>Nouvelle Piéce</h1> <form method="POST" action="product/new" name="newproduct">
+     <h1>Nouvelle Piéce</h1> <form method="POST" action="product/new" name="newproduct" enctype="multipart/form-data">
          <fieldset>
          <div id="etape2">
              <legend>Etape2/2: Détails de la piéce</legend>
@@ -70,7 +65,7 @@
   <div class="column">
     <div class="field-wrapper">
       <label for="Stock">Image</label>
-     <input type="file" id="msg" name="image">
+     <input type="file" id="image" name="image">
 </span>
     </div>
   </div>
@@ -133,7 +128,7 @@
 <!--------------------------etape 1 ------------------------>
   <div id="etape1"><fieldset>
       <legend>Etape 1/2: Choix des données</legend>
-<div class="columns">
+<!------<div class="columns">
   <div class="column">
     <div class="field-wrapper">
     <label for="marque" >Marque</label>
@@ -156,11 +151,11 @@
 <option value="">Ajouter Catégorie</option>
 </select> <span class="form-error-lbl"></span></div></div></div>
 
-<div id="Hinttextcat"></div>
+<div id="Hinttextcat"></div>---->
 
 
 
-<!-------------------constructeur------------------------>
+<!-------------------constructeur------------------------
 <div class="columns">
   <div class="column">
     <div class="field-wrapper">
@@ -182,7 +177,7 @@
 <a class="button button-dark button-arrow-right" id="suivant">Right</a>
 </div>
 
-
+---->
 </div>
 </fieldset>
 </form>
@@ -194,7 +189,7 @@
 <script>
 $(function() {
 $('#qte').hide(); 
-$('#etape2').hide();
+$('#etape1').hide();
  $('#suivant').click(function(){
    
         $('#etape2').show(); 
