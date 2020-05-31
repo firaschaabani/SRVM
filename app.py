@@ -16,10 +16,15 @@ from models import user_model
 
 app = Flask(__name__)
 app.config['SECRET_KEY']='62fe8b83cbe6c254ab6bbb3a0651a90a'
+<<<<<<< HEAD
 
 app.config['MONGO_URI']="mongodb://localhost:27017/rvm"
 app.config["IMAGE_UPLOADS"]="static\images"
 
+=======
+app.config['MONGO_URI']="mongodb+srv://captainAllen:10051994@cluster0-wplmr.mongodb.net/test?retryWrites=true&w=majority"
+mongo=PyMongo(app)
+>>>>>>> 2c15436d42efb9b3259976547abfb0ea6aabccaf
 app.config['ENV'] = 'development'
 app.config['DEBUG'] = True
 app.config['TESTING'] = True
