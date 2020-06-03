@@ -9,25 +9,25 @@
     <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='Front/css/open-iconic-bootstrap.min.css' ) }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='Front/css/animate.css' ) }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='front/css/open-iconic-bootstrap.min.css' ) }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='front/css/animate.css' ) }}">
     
-    <link rel="stylesheet" href="{{ url_for('static', filename='Front/css/owl.carousel.min.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='Front/css/owl.theme.default.min.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='Front/css/magnific-popup.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='front/css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='front/css/owl.theme.default.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='front/css/magnific-popup.css') }}">
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='Front/css/aos.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='front/css/aos.css') }}">
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='Front/css/ionicons.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='front/css/ionicons.min.css') }}">
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='Front/css/bootstrap-datepicker.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='Front/css/jquery.timepicker.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='front/css/bootstrap-datepicker.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='front/css/jquery.timepicker.css') }}">
 
     
-    <link rel="stylesheet" href="{{ url_for('static', filename='Front/css/flaticon.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='Front/css/icomoon.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='Front/css/style.css' ) }}">
-    <!--link rel="stylesheet" href="{{ url_for('static', filename='Front/css/stylesprof.css' ) }}"-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='front/css/flaticon.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='front/css/icomoon.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='front/css/style.css' ) }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/stylesprof.css' ) }}">
 	  <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
   </head>
   <body class="goto-here">
@@ -85,7 +85,7 @@
 
     <section id="home-section" class="hero">
 		  <div class="home-slider owl-carousel">
-	      <div class="slider-item" style="background-image: {{ url_for('static', filename='Front/images/bg_1.jpg') }}">
+	      <div class="slider-item" style="background-image: url(images/bg_1.jpg);">
 	      	<div class="overlay"></div>
 	        <div class="container">
 	          <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
@@ -100,7 +100,7 @@
 	        </div>
 	      </div>
 
-	      <div class="slider-item" style="background-image: {{ url_for('static', filename='Front/images/bg_2.jpg') }};">
+	      <div class="slider-item" style="background-image: url(images/bg_2.jpg);">
 	      	<div class="overlay"></div>
 	        <div class="container">
 	          <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
@@ -198,22 +198,22 @@
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
 
-  <script src="{{ url_for('static', filename='Front/js/jquery.min.js') }}"></script>
-  <script src="{{ url_for('static', filename='Front/js/jquery-migrate-3.0.1.min.js') }}"></script>
-  <script src="{{ url_for('static', filename='Front/js/popper.min.js') }}"></script>
-  <script src="{{ url_for('static', filename='Front/js/bootstrap.min.js') }} "></script>
-  <script src="{{ url_for('static', filename='Front/js/jquery.easing.1.3.js') }}"></script>
-  <script src="{{ url_for('static', filename='Front/js/jquery.waypoints.min.js') }}"></script>
-  <script src="{{ url_for('static', filename='Front/js/jquery.stellar.min.js') }}"></script>
-  <script src="{{ url_for('static', filename='Front/js/owl.carousel.min.js') }}"></script>
-  <script src="{{ url_for('static', filename='Front/js/jquery.magnific-popup.min.js') }}"></script>
-  <script src="{{ url_for('static', filename='Front/js/aos.js') }}"></script>
-  <script src="{{ url_for('static', filename='Front/js/jquery.animateNumber.min.js') }}"></script>
-  <script src="{{ url_for('static', filename='Front/js/bootstrap-datepicker.js') }}"></script>
-  <script src="{{ url_for('static', filename='Front/js/scrollax.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='front/js/jquery.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='front/js/jquery-migrate-3.0.1.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='front/js/popper.min.js') }}"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="{{ url_for('static', filename='front/js/jquery.easing.1.3.js') }}"></script>
+  <script src="{{ url_for('static', filename='front/js/jquery.waypoints.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='front/js/jquery.stellar.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='front/js/owl.carousel.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='front/js/jquery.magnific-popup.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='front/js/aos.js') }}"></script>
+  <script src="{{ url_for('static', filename='front/js/jquery.animateNumber.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='front/js/bootstrap-datepicker.js') }}"></script>
+  <script src="{{ url_for('static', filename='front/js/scrollax.min.js') }}"></script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-  <script src="{{ url_for('static', filename='Front/js/google-map.js') }}"></script>
-  <script src="{{ url_for('static', filename='Front/js/main.js') }}"></script>
+  <script src="{{ url_for('static', filename='front/js/google-map.js') }}"></script>
+  <script src="{{ url_for('static', filename='front/js/main.js') }}"></script>
     
   </body>
 </html>
