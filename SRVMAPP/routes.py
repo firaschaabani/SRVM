@@ -1,6 +1,9 @@
 from flask import  render_template, request,redirect,session,url_for
 from SRVMAPP import app, mongo
 from SRVMAPP.forms import *
+from flask_login import login_user, current_user, logout_user, login_required ,login_manager
+from json import dumps
+from SRVMAPP.models.costom_dash import cost_plot
 
 
 
@@ -25,6 +28,8 @@ def register():
             #return(get_data())
 
     return render_template('register-2.html',title='Register',form=form)
+
+
 @app.route('/login', methods=['GET', 'POST'])
 def log_in():
     form=LoginForm()
@@ -32,14 +37,20 @@ def log_in():
     if request.method == 'POST':
         user=users.find_one({'email':form.email.data})
         if user and check_password_hash(user["pwd"],form.password.data):
-            #login_user(user,remember=form.remember.data)
-            #next_page=request.args.get('next')
+            
             if user["Role"]=="user":
                 return redirect(url_for('home_front')) 
+                
             else :
-                return redirect(url_for('gestion')) 
+                return redirect(url_for('gestion'))
+#                op=bottles.aggregate([{"$group":{"_id": "$Item","count":{"$sum":1}}}])
+#                la=[]
+#                for el in op:
+#                    la=la+[el]
+                
+#                return str(la)
         else :
-            render_template('error_404.html')
+            return render_template('error_404.html')
     #else:
     #    return render_template('error_404.html')
 
@@ -51,10 +62,10 @@ def home_front():
     return render_template('front/index_front.html')
 @app.route('/shop')
 def shop():
-    return render_template('front/shop.html')
+    return render_template('front/my_Profile.html')
 @app.route('/',methods=['GET','POST'])
 def index():
-    return render_template('index.html')
+    return render_template('index.html',bott=bot_ts())
 @app.route('/indexback',methods=['GET','POST'])
 def indexback():
     return render_template('template-back.html')   
@@ -63,7 +74,11 @@ def basic_table():
     return render_template('basic-table.html')
 @app.route('/charts')
 def chart():
-    return render_template('chartjs.html')
+    graphJSON = cost_plot("Plastique 30CL Coca")
+    return render_template('test_chart.html',
+                               graphJSON=graphJSON)
+    #return str(cost_plot("Plastique 30CL Coca"))
+    #return render_template('chartjs.html')
 @app.route('/Product')
 def Produit():
     return render_template('addProduct.html')
@@ -73,25 +88,45 @@ def Produit():
 def gestion():
     result=get_data()
     form=SearchForm()
+    form1=SelectBrandprod()
     #form1=UpdateRole()
     users=mongo.db.users
-    if request.method == 'POST': #User controle for the administrator in the user control Section
-        if form.Name.data=='': # display all users
+    #forc=cost_plot("Plastique 30CL Coca")
+    forc=None
+    lab_forc="Choose brand to forecast"
+    result=get_data()
+    #if request.method == 'POST' : #User controle for the administrator in the user control Section
+    if request.method == "POST" and form.validate_on_submit():
+        if form.Name.data=='' and form1.submiter.data==False: # display all users
             result=get_data()
-        elif form.Name.data != '' and form.submit.data:# find one user and display it
+            print("Form displayAll is submitted")
+            print(str(form1.validate_on_submit()))
+            print(str(zip(bot_ts()[0],bot_ts()[0])))
+            print(form1.brand.data)
+            print(str(form1.submiter.data))
+            print(str(form.validate_on_submit()))
+        elif form.Name.data != '' and form1.submiter.data==False :# find one user and display it
             user=users.find_one({'Name':form.Name.data})
             result=[user]
+            print("Form find is submitted")
             
-        elif form.Name.data !='' and form.submit1.data: # switch the role of a user (Admin-->user or user--> Admin) and display
+            #return str(form1.submit.data)    
+        elif form.Name.data !='' and form.submit1.data and form1.submiter.data==False : # switch the role of a user (Admin-->user or user--> Admin) and display
             user=users.find_one({'Name':form.Name.data})
             if user["Role"]=="user":
                 users.update_one({"Name":form.Name.data},{"$set":{"Role":"Admin"}})
             elif user["Role"]=="Admin":
                 users.update_one({"Name":form.Name.data},{"$set":{"Role":"user"}})
             user=users.find_one({'Name':form.Name.data})
-            result=[user]     
-        
-    return render_template('gestion.html',results=result,set=get_acc(),labels=get_acc_1(),values=get_acc_2(),form=form)
+            result=[user]
+            print("Form Role is submitted")     
+        elif form1.submiter.data==True:
+            
+            forc=cost_plot(form1.brand.data)
+            lab_forc=form1.brand.data + " Forecasting"
+            print("Form forcast is submitted")
+
+    return render_template('gestion.html',results=result,set=get_acc(),reg_labels=get_acc1()[0],reg_values=get_acc1()[1],values=get_acc_2(),form=form,bar_lab=json.dumps(bot_ts()[0]),bar_val=json.dumps(bot_ts()[1]),pers_val=json.dumps(bot_ts()[2]),form1=form1,costom=forc,lab_forc=lab_forc)
 
 #@app.route('/model',methods=['POST'])
 #def model():

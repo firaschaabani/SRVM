@@ -9,6 +9,7 @@ from bson.objectid import ObjectId
 from flask import jsonify,request
 from werkzeug.security import generate_password_hash,check_password_hash
 from SRVMAPP import app, mongo
+from flask_login import UserMixin
 
 
 
@@ -31,7 +32,7 @@ class RegistrationForm(FlaskForm):
 
     password = PasswordField('Password', validators=[DataRequired()]) 
     submit = SubmitField('Sign Up')
-
+ 
 
 
 
@@ -75,16 +76,7 @@ def get_acc():
     
     return zipped
 
-def get_acc_1():
 
-    users=mongo.db.users
-
-    l=[]
-    lis_occ=users.distinct("Occupation")
-    l = "".join([str(elem) for elem in lis_occ]) 
-
-
-    return l
 
 def get_acc_2():
 
@@ -107,3 +99,53 @@ class SearchForm(FlaskForm):
     submit1 = SubmitField('Switch Role')
 
 
+class User(UserMixin):
+    def __init__(self, user_json):
+        self.user_json = user_json
+
+    # Overriding get_id is required if you don't have the id property
+    # Check the source code for UserMixin for details
+    def get_id(self):
+        object_id = self.user_json.get('_id')
+        return str(object_id)
+
+def bot_ts():
+    op=mongo.db.Bottles.aggregate([{"$group":{"_id": "$Item","count":{"$sum":1}}}])
+    la=[]
+    lab=[]
+    val=[]
+    som=0
+    som_list=[]
+    for el in op:
+        la=la+[el]
+    for d in la:
+        lab=lab+[d['_id']]
+        val=val+[d['count']]
+    for i in val:
+        som=som+i
+    for i in val:
+        som_list=som_list+[(i*100)/som] 
+
+    return (lab,val,som_list)
+
+
+class SelectBrandprod(FlaskForm):
+    brands=list(zip(bot_ts()[0],bot_ts()[0]))
+    brand=SelectField(u'Brand Product',choices=brands,validators=[DataRequired()])
+    submiter = SubmitField('Display forecast')
+
+
+def get_acc1():
+
+    users=mongo.db.users
+
+    lis_labels=users.distinct("City")
+    lis_values=[]
+    for doc in lis_labels:
+        nbr=users.find({"City":doc}).count()
+        lis_values=lis_values+[nbr]
+    #colors=["#F7464A", "#46BFBD", "#FDB45C", "#FEDCBA","#ABCDEF", "#DDDDDD", "#ABCABC", "#4169E1","#C71585", "#FF4500", "#FEDCBA", "#46BFBD"]   
+    #dec={lis_occ[i]: lis_red[i],"color":colors[i]  for i in range(len(lis_occ))}
+    
+    
+    return (json.dumps(lis_labels),json.dumps(lis_values),lis_labels)

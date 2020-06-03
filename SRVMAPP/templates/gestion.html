@@ -1,6 +1,36 @@
 {% extends "base.html" %}
 {% block content %}
-
+<div class="row">
+  <div class="col-lg-4 d-flex grid-margin stretch-card">
+    <div class="card bg-primary">
+      <div class="card-body text-white">
+        <h3 class="font-weight-bold mb-3"> 3241/15,000</h3>
+        <div class="progress mb-3">
+          <div class="progress-bar  bg-warning" role="progressbar" style="width: 40%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <p class="pb-0 mb-0">RVM Usage Last Month</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 d-flex grid-margin stretch-card">
+    <div class="card sale-diffrence-border">
+      <div class="card-body">
+        <h2 class="text-dark mb-2 font-weight-bold">28</h2>
+        <h4 class="card-title mb-2">Number of users</h4>
+        <small class="text-muted">MAI 2020</small>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 d-flex grid-margin stretch-card">
+    <div class="card sale-visit-statistics-border">
+      <div class="card-body">
+        <h2 class="text-dark mb-2 font-weight-bold">16000 Pt</h2>
+        <h4 class="card-title mb-2">Score purchased</h4>
+        <small class="text-muted">May 2020</small>
+      </div>
+    </div>
+  </div>
+</div>
       <div class="row">
         <div class="col-lg-12 stretch-card">
             <div class="card">
@@ -101,6 +131,7 @@
 <br>
 <div class="container-fluid page-body-wrapper">
   <div class="main-panel">
+    <div class="row">
     <div class="content-wrapper">
 <div class="row">
   <div class="col-lg-6 grid-margin grid-margin-lg-0 stretch-card">
@@ -114,9 +145,33 @@
   <div class="col-lg-6 grid-margin grid-margin-lg-0 stretch-card">
     <div class="card">
       <div class="card-body">
-        <h4 class="card-title">Scatter chart</h4>
+        <h4 class="card-title">Consumed Product Pourcentage</h4>
+        
         <div>
-          <canvas id="scatterChart"></canvas>
+          <canvas id="scatterChart" style="height: 300px; width: 100%;"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<div class="row">
+  <div class="col-lg-6 grid-margin grid-margin-lg-0 stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Consumption Per Product BarChart</h4>
+        
+        <canvas id="barchart" style="height: 300px; width: 100%;"></canvas>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6 grid-margin grid-margin-lg-0 stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Users Region</h4>
+       
+        <div>
+          <canvas id="regionChart" style="height: 300px; width: 100%;"></canvas>
         </div>
       </div>
     </div>
@@ -127,11 +182,52 @@
   <div class="col-lg-12 stretch-card">
     <div class="card">
       <div class="card-body">
-        <h4 class="card-title">Line chart</h4>
-        <canvas id="lineChart"></canvas>
+        <h4 class="card-title">Brands Times series Foarcast</h4>
+        <div class="horizontal-menu">
+          <nav class="navbar top-navbar col-lg-12 col-12 p-0">
+            <div class="container-fluid">
+              <div class="navbar-menu-wrapper d-flex align-items-center justify-content-between">
+                <form method="POST" action="">  
+                  {{ form1.hidden_tag() }}      
+        <ul class="navbar-nav navbar-nav-left">
+        <li class="nav-item nav-search d-none d-lg-block ml-3">
+          <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="search">
+                  <i class="mdi mdi-magnify"></i>
+                </span>
+              </div>
+              <!--input type="text" class="form-control" placeholder="search by Name" -->
+              {{form1.brand(class="form-control form-control-lg",id="SelectBrand")}}
+          </div>
+        </li>	
+        <li class="nav-item dropdown  d-lg-flex d-none">
+          <a class="nav-link">
+          <!--button type="button" class="btn btn-inverse-primary btn-sm">Find User </button-->
+          {{form1.submiter(class="btn btn-inverse-primary btn-sm")}}
+          </a>
+        </li>
+        <li class="nav-item dropdown  d-lg-flex d-none">
+          <a class="nav-link">
+          <!--button type="button" class="btn btn-inverse-primary btn-sm">Find User </button-->
+          <h2>{{lab_forc}}<h2>
+          </a>
+        </li>
+        
+        
+      </ul>
+      </form>
+              </div>
+            </div>
+              </nav>
+        </div>
+        <div id="lineChart" class="chart">
+          
+        </div>
       </div>
     </div>
   </div>
+</div>
 </div>
 </div>
 </div>
@@ -158,102 +254,149 @@
 
   // draw pie chart
   new Chart(document.getElementById("chart").getContext("2d")).Pie(pieData);
-  /*window.onload = function() {
-  var chart=new CanvasJS.Chart(document.getElementById("chart").getContext("2d"), {
-	animationEnabled: true,
-	title: {
-		text: "Desktop Search Engine Market Share - 2016"
-	},
-	data: [{
-		type: "pie",
-		startAngle: 240,
-		yValueFormatString: "##0.00\"%\"",
-		indexLabel: "{label} {y}",
-		dataPoints: [
-    {% for la,val,color in set %}
-      {y: {{ val }}, label: "{{la}}"}
-    {% endfor %}
-
-			/*{y: 79.45, label: "Google"},
-			{y: 7.31, label: "Bing"},
-			{y: 7.06, label: "Baidu"},
-			{y: 4.91, label: "Yahoo"},
-			{y: 1.26, label: "Others"}
-		]
-	}]
-});
-chart.render();
-
-}*/
-
-
-
-
-/*function() {
-  var doughnutPieData = {
-    datasets: [{
-      
-      data: {{values}}
-      
-    }],
-
-    // These labels appear in the legend and in the tooltips when hovering different arcs
-    //labels: {{set[0]}}
-    
-     //labels: {{labels}}
-     labels: ["Doctor","HR manager","Software developer","Student","Teacher","engineer"]
-     
-    
-  };
-  
-
-  var PieOptions = {
-    responsive: true,
-    animation: {
-      animateScale: true,
-      animateRotate: true
-    }
-  };
-  //new Chart(document.getElementById("chart").getContext("2d")).Pie(pieData)
-  if ($("#chart").length) {
-  var pieChartCanvas = $("#chart").get(0).getContext("2d");
-  var pieChart = new Chart(pieChartCanvas, {
-      type: 'pie',
-      data: doughnutPieData,
-      options: PieOptions
-    });
-  }
-
-};*/
-
-
-
-
-/*var chart = new CanvasJS.Chart("chartContainer", {
-	animationEnabled: true,
-	title: {
-		text: "Desktop Search Engine Market Share - 2016"
-	},
-	data: [{
-		type: "pie",
-		//startAngle: 240,
-		yValueFormatString: "##0.00\"%\"",
-		indexLabel: "{label} {y}",
-		dataPoints: [
-    {% for la ,it, color in set %}
-      {
-        y: {{ it }},
-        label: "{{la}}"
-        
-      },
-    {% endfor %}
-			
-		]
-	}]
-});
-chart.render();
-
-}*/
+  ////////////////////////////////////////////////**/
 </script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<!--script>
+  var ctx = document.getElementById('scatterChart').getContext('2d');
+  var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'line',
+
+    // The data for our dataset
+    data: {
+        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+        datasets: [{
+            label: 'My First dataset',
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: [0, 10, 5, 2, 20, 30, 45]
+        }]
+    }});
+
+ </script-->
+ <!--script>
+   var ctx = document.getElementById('lineChart').getContext('2d');
+   var myBarChart = new Chart(ctx, {
+    type: 'bar',
+    data: data,
+    options: options
+});
+ </script-->
+ <script>
+  
+ // var data_val= {{bar_val}};
+  //var data_lab={{bar_lab}} ;
+  
+  var bari = document.getElementById('barchart').getContext('2d');
+  var myBarChart = new Chart(bari, {
+    type: 'bar',
+    data: {
+        labels: {{bar_lab|safe}},
+        datasets: [{
+        label: "Consumption per product",
+        backgroundColor:["#D8BFD8","#DDA0DD", "	#EE82EE", "#DA70D6","#FF00FF", "#BA55D3","#9370DB","#8A2BE2", "#9400D3", "#9932CC", "#8B008B","#800080", "#4B0082", "#0000FF","#0000CD", "#00008B","#7B68EE", "#2F4F4F","#20B2AA","#008B8B", "#BC8F8F", "#ABCABC"],
+        data: {{bar_val|safe}}
+
+        }]
+      }
+  
+    
+    
+    });
+
+
+
+</script>
+<script>
+  var salesDifferencedata = {
+			labels:{{bar_lab|safe}},
+			datasets: [{
+        label: 'brand percentage ',
+        backgroundColor:["#D8BFD8","#DDA0DD", "	#EE82EE", "#DA70D6","#FF00FF", "#BA55D3","#9370DB","#8A2BE2", "#9400D3", "#9932CC", "#8B008B","#800080", "#4B0082", "#0000FF","#0000CD", "#00008B","#7B68EE", "#2F4F4F","#20B2AA","#008B8B", "#BC8F8F", "#ABCABC"],
+        data: {{pers_val|safe}},
+        hoverBackgroundColor:"#A52A2A",
+        hoverBorderColor:"#D2691E"
+
+				
+					
+      }]
+				
+			};
+		
+  var barChartCanvas = document.getElementById('scatterChart').getContext("2d");
+			// This will get the first returned node in the jQuery collection.
+			var barChart = new Chart(barChartCanvas, {
+				type: 'horizontalBar',
+				data: salesDifferencedata,
+				//options: salesDifferenceOptions,
+
+			});
+		
+
+
+</script>
+    <!-- D3.js -->
+    <!---script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <-- Plotly.js ->
+    <script src="https://d14fo0winaifog.cloudfront.net/plotly-basic.js"></script-->
+      <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+<script>
+  var graphs = {{costom | safe}};
+  var lchart = document.getElementById('lineChart');
+  Plotly.plot(lchart,graphs);
+</script>
+<script>
+  var regions_data = {
+      //label:["beja","Kasserine","tunis","gafsa"],
+			datasets: [{
+				data: {{reg_values|safe}},
+				backgroundColor: [
+					'#ee5b5b',
+					'#fcd53b',
+					'#0bdbb8',
+					'#464dee',
+					'#0ad7f7'
+				],
+				borderColor: [
+					'#ee5b5b',
+					'#fcd53b',
+					'#0bdbb8',
+					'#464dee',
+					'#0ad7f7'
+				],
+			}],
+			// These labels appear in the legend and in the tooltips when hovering different arcs
+			labels: {{reg_labels|safe}}
+		};
+		var regionOptions = {
+			responsive: true,
+			cutoutPercentage: 80,
+			legend: {
+					display: true,
+			},
+			animation: {
+					animateScale: true,
+					animateRotate: true
+			},
+			plugins: {
+				datalabels: {
+					 display: true,
+					 align: 'center',
+					 anchor: 'center'
+				}
+			}				
+	
+		};
+  var pieChartCanvas = document.getElementById('regionChart').getContext("2d");
+			var pieChart = new Chart(pieChartCanvas, {
+				type: 'doughnut',
+				data: regions_data,
+				options: regionOptions
+			});
+</script>
+
 
 {% endblock %}
